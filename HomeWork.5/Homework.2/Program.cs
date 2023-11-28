@@ -33,13 +33,13 @@ void PrintArray(int[] array)
 /*
     подсчитывает количество чётных элементов в массиве
 */
-int GetCountOfEven(int[] array)
+int GetCountOfEvenNumber(int[] array)
 {
     int result = 0;
 
-    for (int i = 0; i < array.Length; i++)
+    foreach (int n in array)
     {
-        if ((array[i] & 0x01) == 0)
+        if ((n & 0x01) == 0)
         {
             result++;
         }
@@ -51,4 +51,4 @@ Console.Clear();
 Console.WriteLine("Generate an array...");
 int[] array = CreateRandomArray(10, 100, 999);
 PrintArray(array);
-Console.WriteLine($"Even numbers in the array = {GetCountOfEven(array)}");
+Console.WriteLine($"Even numbers in the array = {GetCountOfEvenNumber(array)}");

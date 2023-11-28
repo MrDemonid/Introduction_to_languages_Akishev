@@ -43,7 +43,7 @@ void InverseArray(int[] array)
 
 Console.Write("Enter array size: ");
 int size = Convert.ToInt32(Console.ReadLine());
-int[] array = CreateRandomArray(size, 10, 99);
+int[] array = CreateRandomArray(size, 0, 9);
 PrintArray(array);
 InverseArray(array);
 PrintArray(array);
