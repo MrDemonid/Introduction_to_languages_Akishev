@@ -44,11 +44,7 @@ void ShowNumbersFromRange(int start, int end)
 Console.Clear();
 int startRange = EnterNaturalNum("start");
 int endRange = EnterNaturalNum("end");
-if (startRange > endRange)
-{
-    int tmp = startRange;
-    startRange = endRange;
-    endRange = tmp;
-}
+if (startRange > endRange) 
+    (startRange, endRange) = (endRange, startRange);
 
 ShowNumbersFromRange(startRange, endRange);

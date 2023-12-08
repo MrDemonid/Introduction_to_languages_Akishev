@@ -20,36 +20,41 @@ int[] CreateRandomArray(int size, int min, int max)
     return array;
 }
 
-/*
-    Вывод на консоль массива
-*/
-void ShowArray(int[] array)
-{
-    for (int idx = 0; idx < array.Length; idx++)
-    {
-        Console.Write(array[idx]);
-        if (idx < array.Length-1)
-        {
-            Console.Write(", ");
-        }
-    }
-    Console.WriteLine();
-}
-
 
 /*
-    Вывод элементов массива в обратном порядке
+    Вывод элементов массива в обратном порядке.
+    На каждой итерации создается новый массив.
+    Медленно, зато без лишних параметров.
 */
-void ShowInversedArray(int[] array)
+void ShowInvertArray(int[] array)
 {
     if (array.Length == 0)
         return;
-    ShowInversedArray(array.Skip(1).ToArray());
+    ShowInvertArray(array.Skip(1).ToArray());
     if (array.Length > 1)
         Console.Write(", ");
     Console.Write(array[0]);
 }
 
+/*
+    Вывод элементов массива в обратном порядке.
+    Вместо создания нового массива используется простой указатель
+    "начала" массива, примерно как в реализациях QuickSort.
+    Не так эстетично как выше, зато шустро и без перерасхода памяти.
+*/
+void ShowInvertArrayPosMethod(int[] array, int pos)
+{
+    if (pos >= array.Length)
+        return;
+    ShowInvertArrayPosMethod(array, pos+1);
+    if (pos < array.Length-1)
+        Console.Write(", ");
+    Console.Write(array[pos]);
+}
+
+
+
+Console.Clear();
 Console.Write("Enter array size: ");
 int size = Convert.ToInt32(Console.ReadLine());
 Console.Write($"Enter min: ");
@@ -58,6 +63,9 @@ Console.Write($"Enter max: ");
 int max = Convert.ToInt32(Console.ReadLine());
 
 int[] array = CreateRandomArray(size, min, max);
-ShowArray(array);
+Console.WriteLine($"{String.Join(", ", array)}");   // show array
 
-ShowInversedArray(array);
+// выводим массив в обратном порядке, обоими методами
+ShowInvertArrayPosMethod(array, 0);
+Console.WriteLine();
+ShowInvertArray(array);
